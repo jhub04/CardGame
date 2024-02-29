@@ -1,10 +1,12 @@
 package edu.ntnu.stud.models;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DeckOfCards {
 
-  private final char[] suits = {'S', 'H', 'D', 'C'}; // 'S'=spade, 'H'=heart, 'D'=diamonds, 'C'=clubs
+  private final char[] suits = {'S', 'H', 'D',
+      'C'}; // 'S'=spade, 'H'=heart, 'D'=diamonds, 'C'=clubs
   private List<PlayingCard> allCards;
 
   public DeckOfCards() {
@@ -18,6 +20,19 @@ public class DeckOfCards {
 
   public List<PlayingCard> getAllCards() {
     return allCards;
+  }
+
+  private void shuffle() {
+    Collections.shuffle(allCards);
+  }
+
+  public List<PlayingCard> dealHand(int n) {
+    if (n > 52 || n < 1) {
+      throw new IllegalArgumentException();
+    }
+    return allCards.stream()
+        .limit(n)
+        .collect(Collectors.toList());
   }
 
 
