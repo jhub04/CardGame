@@ -22,18 +22,18 @@ public class DeckOfCards {
     return allCards;
   }
 
-  private void shuffle() {
-    Collections.shuffle(allCards);
-  }
-
   public List<PlayingCard> dealHand(int n) {
     if (n > 52 || n < 1) {
       throw new IllegalArgumentException();
     }
+    this.shuffle();
     return allCards.stream()
         .limit(n)
         .collect(Collectors.toList());
   }
 
+  private void shuffle() {
+    Collections.shuffle(allCards);
+  }
 
 }
