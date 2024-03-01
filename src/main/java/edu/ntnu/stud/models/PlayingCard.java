@@ -30,7 +30,7 @@ public class PlayingCard {
    * @param face The face value of the card, an integer between 1 and 13
    * @throws IllegalArgumentException if suit or face have invalid values.
    */
-  public PlayingCard(char suit, int face, Image image) {
+  public PlayingCard(char suit, int face) {
     if (suit != 'H' && suit != 'D' && suit != 'C' && suit != 'S') {
       throw new IllegalArgumentException("Parameter suit must be one of H, D, C or S");
     }

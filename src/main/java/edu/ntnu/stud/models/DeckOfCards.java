@@ -14,40 +14,8 @@ public class DeckOfCards {
     this.allCards = new ArrayList<>(52);
     for (char suit : suits) {
       for (int face = 1; face <= 13; face++) {
-        Image image = new Image(getClass().getResourceAsStream(
-            "/PNG-cards-1.3/" + faceInFull(face) + "_of_" + suitsInFull(suit) + ".png"));
-        allCards.add(new PlayingCard(suit, face, image));
+        allCards.add(new PlayingCard(suit, face));
       }
-    }
-  }
-
-  private String faceInFull(int face) {
-    switch (face) {
-      case 1:
-        return "ace";
-      case 11:
-        return "jack";
-      case 12:
-        return "queen";
-      case 13:
-        return "king";
-      default:
-        return String.valueOf(face);
-    }
-  }
-
-  private String suitsInFull(char suit) {
-    switch (suit) {
-      case 'S':
-        return "spades";
-      case 'H':
-        return "hearts";
-      case 'D':
-        return "diamonds";
-      case 'C':
-        return "clubs";
-      default:
-        throw new IllegalArgumentException("Invalid suit");
     }
   }
 
