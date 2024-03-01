@@ -1,5 +1,6 @@
 package edu.ntnu.stud.models;
 
+import edu.ntnu.stud.utils.CardGameUtils;
 import java.io.InputStream;
 import javafx.scene.image.Image;
 
@@ -41,7 +42,7 @@ public class PlayingCard {
 
     this.suit = suit;
     this.face = face;
-    String imageName = "/PNG-cards-1.3/" + faceInFull() + "_of_" + suitsInFull() + ".png";
+    String imageName = CardGameUtils.getCardImageFileName(suit, face);
     InputStream is = getClass().getResourceAsStream(imageName);
     if (is == null) {
       throw new IllegalArgumentException("Cannot find image file: " + imageName);
@@ -100,31 +101,5 @@ public class PlayingCard {
     hash = 31 * hash + getSuit();
     hash = 31 * hash + getFace();
     return hash;
-  }
-
-  public String suitsInFull() {
-    if (suit == 'H') {
-      return "hearts";
-    } else if (suit == 'D') {
-      return "diamonds";
-    } else if (suit == 'C') {
-      return "clubs";
-    } else {
-      return "spades";
-    }
-  }
-
-  public String faceInFull() {
-    if (face == 1) {
-      return "ace";
-    } else if (face == 11) {
-      return "jack";
-    } else if (face == 12) {
-      return "queen";
-    } else if (face == 13) {
-      return "king";
-    } else {
-      return String.valueOf(face);
-    }
   }
 }
