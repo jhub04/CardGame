@@ -4,6 +4,4 @@ module edu.ntnu.stud {
 
   opens edu.ntnu.stud to javafx.fxml;
   exports edu.ntnu.stud;
-  exports edu.ntnu.stud.view;
-  opens edu.ntnu.stud.view to javafx.fxml;
 }
