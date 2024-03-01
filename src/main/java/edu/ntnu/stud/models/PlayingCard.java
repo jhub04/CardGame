@@ -40,8 +40,8 @@ public class PlayingCard {
   }
 
   /**
-   * Returns the suit and face of the card as a string.
-   * A 4 of hearts is returned as the string "H4".
+   * Returns the suit and face of the card as a string. A 4 of hearts is returned as the string
+   * "H4".
    *
    * @return the suit and face of the card as a string
    */
