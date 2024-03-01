@@ -1,32 +1,65 @@
-package edu.ntnu.stud.view;
+package edu.ntnu.stud;
 
+import edu.ntnu.stud.models.DeckOfCards;
+import edu.ntnu.stud.models.PlayingCard;
+import java.util.List;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
+  private DeckOfCards deck = new DeckOfCards();
+
   @Override
-  public void start(Stage primaryStage) throws Exception {
-    // Stage stage = new Stage();
+  public void start(Stage stage) throws Exception {
 
-    Group root = new Group();
-    Scene scene = new Scene(root, Color.WHITE);
+    // UI for displaying the cards
+    HBox cardDisplay = new HBox();
+    cardDisplay.setAlignment(Pos.CENTER);
 
-    Image icon = new Image("/playing-card.png");
+    // Button for dealing the cards
+    Button dealbtn = new Button("Deal hand");
+    dealbtn.setOnAction(e -> {
+      List<PlayingCard> hand = deck.dealHand(5);
+      cardDisplay.getChildren().clear();
+      for (PlayingCard card : hand) {
+        ImageView imageView = createImageView(card);
+        cardDisplay.getChildren().add(imageView);
+      }
+    });
 
-    primaryStage.getIcons().add(icon);
-    primaryStage.setWidth(1200);
-    primaryStage.setHeight(900);
-    primaryStage.setResizable(false);
-    primaryStage.setTitle("CardGame");
-    primaryStage.setScene(scene);
-    primaryStage.show();
+    // Layout setup
+    VBox root = new VBox(20, cardDisplay, dealbtn);
+    root.setAlignment(Pos.CENTER);
+
+    // Show the stage
+    Scene scene = new Scene(root, 600, 400);
+    stage.setTitle("Card Game");
+    stage.getIcons().add(new Image("/playing-card.png"));
+    stage.setScene(scene);
+    stage.show();
+
+
+  }
+
+  private ImageView createImageView(PlayingCard card) {
+    Image image = card.getImage();
+    ImageView imageView = new ImageView(image);
+    imageView.setFitWidth(100);
+    imageView.setFitHeight(150);
+    return imageView;
   }
 
   public static void main(String[] args) {
