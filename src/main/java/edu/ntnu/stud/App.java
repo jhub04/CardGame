@@ -25,8 +25,8 @@ public class App extends Application {
     cardDisplay.setAlignment(Pos.CENTER);
 
     // Button for dealing the cards
-    Button dealbtn = new Button("Deal hand");
-    dealbtn.setOnAction(e -> {
+    Button dealBtn = new Button("Deal hand");
+    dealBtn.setOnAction(e -> {
       List<PlayingCard> hand = deck.dealHand(5);
       cardDisplay.getChildren().clear();
       for (PlayingCard card : hand) {
@@ -35,8 +35,9 @@ public class App extends Application {
       }
     });
 
+
     // Layout setup
-    VBox root = new VBox(20, cardDisplay, dealbtn);
+    VBox root = new VBox(20, cardDisplay, dealBtn);
     root.setAlignment(Pos.CENTER);
 
     // Show the stage
